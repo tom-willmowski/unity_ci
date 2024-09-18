@@ -6,16 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
-      - name: Ensure FUSE
-        run: sudo apt-get update
-      - run: sudo apt-get install fuse
-      # - name: Unity - Activate
-      #   uses: game-ci/unity-activate@v2.0.0
-      #   #with:
-      #     #unityVersion: 2022.3.37f1 # optional, default is 2019.2.11f1
+        uses: actions/checkout@v4
+      # - name: Ensure FUSE
+      #   run: sudo apt-get update
+      # - run: sudo apt-get install fuse
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
       - name: Unity - Builder
         uses: game-ci/unity-builder@v4.2.3
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: Android
           #unityVersion: 2022.3.37f1
