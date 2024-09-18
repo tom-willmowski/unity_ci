@@ -7,6 +7,10 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
+      - name: Ensure FUSE
+        run: 
+          sudo apt-get update
+          sudo apt-get install fuse
       - name: Setup Unity
         uses: kuler90/setup-unity@v1
         with:
