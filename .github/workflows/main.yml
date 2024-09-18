@@ -10,19 +10,10 @@ jobs:
       - name: Ensure FUSE
         run: sudo apt-get update
       - run: sudo apt-get install fuse
-      - name: Setup Unity
-        uses: kuler90/setup-unity@v1
+      - name: Unity - Builder
+        uses: game-ci/unity-builder@v4.2.3
         with:
-          unity-modules: android
-    
-      - name: Activate Unity
-        uses: kuler90/activate-unity@v1
-        with:
-          unity-username: ${{ secrets.UNITY_USERNAME }}
-          unity-password: ${{ secrets.UNITY_PASSWORD }}
-          unity-authenticator-key: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
-      - name: Build Unity
-        uses: kuler90/build-unity@v1
-        with:
-          build-target: Android
-          build-path: ./test.apk
+          targetPlatform: Android
+          unityVersion: 2022.3.37f1
+          buildName: test
+          buildsPath: BuildScript.Build
