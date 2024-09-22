@@ -28,3 +28,6 @@ jobs:
           #unityVersion: 2022.3.37f1
           buildName: test
           buildsPath: BuildScript.Build
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
