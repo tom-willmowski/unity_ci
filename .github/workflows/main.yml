@@ -1,6 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  workflow_dispatch:
 jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
@@ -8,7 +9,7 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
       # Cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
