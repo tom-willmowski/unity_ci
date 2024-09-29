@@ -3,13 +3,10 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
-      # - name: Ensure FUSE
-      #   run: sudo apt-get update
-      # - run: sudo apt-get install fuse
       # Cache
       - uses: actions/cache@v3
         with:
